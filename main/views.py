@@ -18,3 +18,6 @@ class MainPageView(ListView):
     template_name = 'index.html'
     context_object_name = 'products'
 
+
+class ProductView(ListView):
+    pass
