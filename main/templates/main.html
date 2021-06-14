@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- area-bg-one -->
+            <div class="area-bg-one">
+
+                <!-- latest-games-area -->
+                <section class="latest-games-area pt-120">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-8">
+                                <div class="section-title mb-50">
+                                    <span>LATEST RELEASES</span>
+                                    <h2>Create & <span>Manage</span></h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="latest-games-active owl-carousel">
+                                    <div class="latest-games-items mb-30">
+                                        <div class="latest-games-thumb">
+                                            <a href="#"><img src="{% static 'img/product/latest_games_thumb01.jpg' %}" alt=""></a>
+                                        </div>
+                                        <div class="latest-games-content">
+                                            <div class="lg-tag">
+                                                <a href="#">racing</a>
+                                            </div>
+                                            <h4><a href="#">Vertical Games <span>Daily</span></a></h4>
+                                            <p>entry fee : <span>free</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="latest-games-items mb-30">
+                                        <div class="latest-games-thumb">
+                                            <a href="#"><img src="{% static 'img/product/latest_games_thumb02.jpg' %}" alt=""></a>
+                                        </div>
+                                        <div class="latest-games-content">
+                                            <div class="lg-tag">
+                                                <a href="#">zombie</a>
+                                            </div>
+                                            <h4><a href="#">Hunter Killer <span>ii</span></a></h4>
+                                            <p>entry fee : <span>$25,00</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="latest-games-items mb-30">
+                                        <div class="latest-games-thumb">
+                                            <a href="#"><img src="{% static 'img/product/latest_games_thumb03.jpg' %}" alt=""></a>
+                                        </div>
+                                        <div class="latest-games-content">
+                                            <div class="lg-tag">
+                                                <a href="#">creative</a>
+                                            </div>
+                                            <h4><a href="#">Sky Walker <span>Daily</span></a></h4>
+                                            <p>entry fee : <span>$25,00</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="latest-games-items mb-30">
+                                        <div class="latest-games-thumb">
+                                            <a href="#"><img src="{% static 'img/product/latest_games_thumb01.jpg' %}" alt=""></a>
+                                        </div>
+                                        <div class="latest-games-content">
+                                            <div class="lg-tag">
+                                                <a href="#">racing</a>
+                                            </div>
+                                            <h4><a href="#">Vertical games <span>daily</span></a></h4>
+                                            <p>entry fee : <span>free</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- latest-games-area-end -->
+
+{% endblock content %}
