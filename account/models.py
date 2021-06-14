@@ -10,7 +10,6 @@ class User(AbstractUser):
     last_name = models.CharField(max_length=250)
     image = models.ImageField(upload_to='users')
 
-
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
 
