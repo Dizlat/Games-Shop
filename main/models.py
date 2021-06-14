@@ -28,6 +28,15 @@ class Tag(models.Model):
         return self.title
 
 
+class Company(models.Model):
+    title = models.CharField(max_length=100)
+    logo = models.ImageField(upload_to='logos')
+    description = models.TextField()
+
+    def __str__(self):
+        return self.title
+
+
 class Product(models.Model):
     title = models.CharField(max_length=250)
     image = models.ImageField(upload_to='images')
@@ -35,6 +44,7 @@ class Product(models.Model):
     release_date = models.DateField()
     created = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='products')
+    company = models.ForeignKey(Company, models.DO_NOTHING, related_name='products')
 
     categories = models.ManyToManyField(Category)
     tags = models.ManyToManyField(Tag)
@@ -43,20 +53,12 @@ class Product(models.Model):
         return self.tittle
 
 
-class Company(models.Model):
-    title = models.CharField(max_length=100)
-    logo = models.ImageField(upload_to='logos')
-    description = models.TextField()
-    product = models.ForeignKey(Product, related_name='company-products')
-
-    def __str__(self):
-        return self.title
-
-
 class Review(models.Model):
     text = models.TextField()
-    rate = models.RatingField(range=5)
+    # rate = models.RatingField(range=5)
     created = models.DateTimeField(auto_now_add=True)
+    product = models.ForeignKey(Product, on_delete=models.DO_NOTHING, related_name='reviews')
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='reviews')
 
 
 class Image(models.Model):

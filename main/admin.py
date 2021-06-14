@@ -1,3 +1,20 @@
 from django.contrib import admin
 
-# Register your models here.
+from main.models import *
+
+# Create your views here.
+
+
+class ImageInlineAdmin(admin.TabularInline):
+    model = Image
+    fields = ('image',)
+    max_num = 5
+
+
+@admin.register(Product)
+class RecipeAdmin(admin.ModelAdmin):
+    inlines = [ImageInlineAdmin,]
+
+
+admin.site.register(Category)
+admin.site.register(Tag)
