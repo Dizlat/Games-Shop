@@ -65,11 +65,14 @@
                                                 <p><span>|</span><i class="far fa-envelope"></i><a href="mailto:info@gmail.com">info@gecoinfo.com</a></p>
                                             </div>
                                         </li>
+                                        {%  if not request.user.is_authenticated %}
+
                                         <li>
                                             <div class="header-user-login">
-                                                <a href="#"><i class="fas fa-user"></i>Login</a>
+                                                <a href="{% url 'login' %}"><i class="fas fa-user"></i>Login</a>
                                             </div>
                                         </li>
+                                        {% endif %}
                                     </ul>
                                 </div>
                             </div>
