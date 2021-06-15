@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="post" enctype="multipart/form-data" >
+        {% csrf_token %}
+        {{ product_form.as_p }}
+        {{ formset.management_form }}
+        {% for form in formset %}
+        {{ form }}
+        {% endfor %}
+    <input class="btn btn-primary" type="submit" value="Submit">
+
+    </form>
+</body>
+</html>

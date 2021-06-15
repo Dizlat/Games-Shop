@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>product detail</title>
+</head>
+<body>
+<h1>Product detail</h1>
+    <h1>{{ product.tittle }}</h1>
+    <image src="{{ product.image.url }}"></image>
+    <a href="{% url 'update-product' product.id %}">redactr</a><br>
+    <a href="{% url 'delete-product' product.id %}">Delete</a>
+
+</body>
+</html>
