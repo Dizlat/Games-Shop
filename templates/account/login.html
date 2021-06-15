@@ -1,11 +1,24 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    <h1>Log in</h1>
+<div class="header-top-area d-none d-lg-block">
+                <div class="container-fluid container-full-padding">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 d-none d-lg-block">
+                            <div class="header-top-offer">
+                                 <h1>Log in</h1>
 <form method="post">
   {% csrf_token %}
   {{ form.as_p }}
   <button type="submit">Log in</button>
 </form>
 
-{% endblock content%}
+                                <p>Exclusive Black Friday ! Offer</p>
+                                <span class="coming-time" data-countdown="2020/6/20"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+</div>
+
+{% endblock content %}
