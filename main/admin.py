@@ -12,9 +12,10 @@ class ImageInlineAdmin(admin.TabularInline):
 
 
 @admin.register(Product)
-class RecipeAdmin(admin.ModelAdmin):
+class ProductAdmin(admin.ModelAdmin):
     inlines = [ImageInlineAdmin,]
 
 
 admin.site.register(Category)
 admin.site.register(Tag)
+admin.site.register(Company)

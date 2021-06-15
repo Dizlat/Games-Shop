@@ -6,7 +6,7 @@ from account.models import User
 
 class Category(models.Model):
     slug = models.SlugField(primary_key=True, max_length=50)
-    title = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
     parent = models.ForeignKey('self', related_name='children', null=True, blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -38,7 +38,7 @@ class Company(models.Model):
 
 
 class Product(models.Model):
-    title = models.CharField(max_length=250)
+    tittle = models.CharField(max_length=250)
     image = models.ImageField(upload_to='images')
     description = models.TextField()
     release_date = models.DateField()
@@ -67,6 +67,9 @@ class Image(models.Model):
 
     def __str__(self):
         return self.image.url
+
+
+
 
 
 
