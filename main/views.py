@@ -35,7 +35,7 @@ class ProductDetailView(DetailView):
 
 class CategoryDetailView(DetailView):
     model = Category
-    template_name = 'category_detail.html'
+    template_name = 'Category_detail.html'
     context_object_name = 'category'
 
     def get(self, request, *args, **kwargs):
@@ -55,10 +55,10 @@ class CompanyDetailView(DetailView):
     context_object_name = 'company'
 
 
-class TagDetailView(DetailView):
-    model = Tag
-    template_name = 'update_product.html'
-    context_object_name = 'tag'
+# class TagListView(ListView):
+#     model = Tag
+#     template_name = 'Category_detail.html'
+#     context_object_name = 'tags'
 
 
 class AddProduct(CreateView):
@@ -72,7 +72,7 @@ class AddProduct(CreateView):
     #     return kwargs
 
     def get_success_url(self):
-        return reverse('add_product_image.html', args=(self.object.id, ))
+        return reverse('product-detail.html', args=(self.object.id, ))
 
 
 class AddProductImage(CreateView):
