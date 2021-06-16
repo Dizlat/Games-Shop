@@ -52,6 +52,10 @@ class Product(models.Model):
     def __str__(self):
         return self.tittle
 
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse('product-detail', kwargs={'pk': self.pk})
+
 
 class Review(models.Model):
     text = models.TextField()

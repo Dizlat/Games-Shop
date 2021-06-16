@@ -111,24 +111,24 @@ class AddProductImage(CreateView):
 #     return render(request, 'add_product.html', locals())
 #
 #
-# def update_product(request, pk):
-#     product = get_object_or_404(Product, pk=pk)
-#     if request.user == product.user:
-#         ImageFormSet = modelformset_factory(Image, form=ImageForm, max_num=5)
-#         product_form = AddProductForm(request.POST or None, instance=product)
-#         formset = ImageFormSet(request.POST or None, request.FILES or None, queryset=Image.objects.filter(product=product))
-#         if product_form.is_valid() and formset.is_valid():
-#             product_form.save()
-#
-#             for form in formset:
-#                 image = form.save(commit=False)
-#                 image.product = product
-#                 image.save()
-#             return redirect(product.get_absolute_url())
-#         return render(request, 'update_product.html', locals())
-#
-#     else:
-#         return HttpResponse('<h1> Error:403 Forbidden</h1>')
+def update_product(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    if request.user == product.user:
+        ImageFormSet = modelformset_factory(Image, form=ImageForm, max_num=5)
+        product_form = AddProductForm(request.POST or None, instance=product)
+        formset = ImageFormSet(request.POST or None, request.FILES or None, queryset=Image.objects.filter(product=product))
+        if product_form.is_valid() and formset.is_valid():
+            product_form.save()
+
+            for form in formset:
+                image = form.save(commit=False)
+                image.product = product
+                image.save()
+            return redirect(product.get_absolute_url())
+        return render(request, 'update_product.html', locals())
+
+    else:
+        return HttpResponse('<h1> Error:403 Forbidden</h1>')
 
 
 class DeleteRecipeView(UserHasPermissionMixin, DeleteView):
