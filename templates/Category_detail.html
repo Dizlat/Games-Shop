@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<article class="post">
+                                <h1>{{ object_list.0.category.name }}</h1>
+</article>
+
+
+	    <!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<article class="post">
+                                    {% if category.get_children %}
+                                    {% for child in category.get_children %}
+                                <ul class="actions">
+											<li><a href="{% url 'category' child.slug %}" class="button big">{{ child.name }}</a></li>
+                                </ul>
+                                {% endfor %}
+                                {% endif %}
+                            </article>
+                        <article class="post">
+
+                            </article>
+                    </div>
+
+{% endblock %}

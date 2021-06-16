@@ -18,6 +18,7 @@ class RegisterView(SuccessMessageMixin, CreateView):
 
 class SignInView(LoginView):
     template_name = 'account/login.html'
+    success_url = reverse_lazy('home')
 
 
 def profile(request):
