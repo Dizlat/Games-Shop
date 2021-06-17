@@ -16,13 +16,14 @@ from django_filters import FilterSet
 
 from .forms import *
 from .models import *
-from .permissions import UserHasPermissionMixin
+from .permissions import UserHasPerMixin
 
 
 class MainView(ListView):
     model = Post
     template_name = 'main.html'
     context_object_name = 'posts'
+    paginate_by = 2
 
 
 class AccountDetailView(DetailView):
@@ -31,3 +32,27 @@ class AccountDetailView(DetailView):
     context_object_name = 'user'
 
 
+class AddPost(CreateView):
+    model = Post
+    template_name = 'add_post.html'
+    form_class = AddPostForm
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['request'] = self.request
+        return kwargs
+
+    def get_success_url(self):
+        return reverse('my-post', args=(self.object.id, ))
+
+
+class UpdatePostView(UserHasPerMixin, UpdateView):
+
+
+
+class DeletePostView(UserHasPerMixin, DeleteView):
+    model = Post
+    template_name = 'delete-post.html'
+
+    def get_success_url(self):
+        return reverse('home')
