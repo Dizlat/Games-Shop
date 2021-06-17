@@ -1,12 +1,31 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-    <input class="btn btn-primary" type="submit" value="Submit">
-</form>
+ <section id="container">
+			<div class="wrap-container clearfix">
+				<div id="main-content">
+					<div class="wrap-content zerogrid ">
+						<article class="post">
+  							<h1>{{ category.name }}</h1>
+						</article>
+						<article class="background-white">
+							<div class="art-header">
+								<hr class="line-2">
+                                    <form method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        {{ form.as_p }}
+<!--										{{ formset.management_form }}-->
+<!--        								{% for form in formset %}-->
+<!--        								{{ form.as_p }}-->
+<!--        								{% endfor %}-->
+                                    	<input class="btn btn-primary" type="submit" value="Submit">
+                                    </form>
+                                </div>
+						</article>
+                    </div>
+				</div>
+			</div>
+	   </section>
 
 
 {% endblock %}

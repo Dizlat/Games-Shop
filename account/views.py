@@ -13,7 +13,7 @@ class RegisterView(SuccessMessageMixin, CreateView):
     template_name = 'account/registration.html'
     form_class = RegistrationForm
     success_url = reverse_lazy('home')
-    success_message = 'Successfully registered!'
+    success_message = 'Successfully registered! can log in!'
 
 
 class SignInView(LoginView):

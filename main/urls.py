@@ -9,7 +9,7 @@ urlpatterns = [
     path('list-product/', ProductListView.as_view(), name='list-product'),
     path('p/product-detail/<int:pk>/', ProductDetailView.as_view(), name='product-detail'),
     path('pr/delete-product/<int:pk>/', DeleteRecipeView.as_view(), name='delete-product'),
-    path('add-product-image/', AddProductImage.as_view(), name='add-image'),
+    path('up/p/add-image/<int:pk>', AddProductImage.as_view(), name='add-image'),
     path('category/categories-detail/<str:slug>/', CategoryDetailView.as_view(), name='category-detail'),
 
 

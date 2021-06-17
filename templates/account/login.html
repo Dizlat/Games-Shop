@@ -1,25 +1,31 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<div class="header-top-area d-none d-lg-block">
-                <div class="container-fluid container-full-padding">
-                    <div class="row align-items-center">
-                        <div class="col-lg-6 d-none d-lg-block">
-                            <div class="header-top-offer">
-                                 <h1>Log in</h1>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Log in</button>
+<section id="container">
+			<div class="wrap-container clearfix">
+				<div id="main-content">
+					<div class="wrap-content zerogrid ">
+						<article class="post">
+  							<h1>Log In</h1>
+						</article>
+						<article class="background-white">
+							<div class="art-header">
+								<hr class="line-2">
+                            <form method="post">
+                                        {% csrf_token %}
+                                        {{ form.as_p }}
+                                     <button type="submit">Log in</button><br>
+							</form>
+								<h3>If you don't have a profile. You can Registration!</h3>
+                                    <a href="{% url 'register' %}"><button>Registration</button></a>
 
-</form>
 
-                                <p>Exclusive Black Friday ! Offer</p>
-                                <span class="coming-time" data-countdown="2020/6/20"></span>
-                            </div>
-                        </div>
+
+							</div>
+						</article>
                     </div>
-                </div>
-</div>
+				</div>
+			</div>
+	   </section>
 
-{% endblock content %}
+{% endblock %}

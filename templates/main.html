@@ -1,11 +1,36 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+<section id="container">
+			<div class="wrap-container clearfix">
+				<div id="main-content">
+					<div class="wrap-content zerogrid ">
+						<article class="post">
+							{% if messages %}
+									<ul class="messages">
+										{% for message in messages %}
+										<div class="alert alert-success" role="alert">{{ message }}</div>
+										{% endfor %}
+									</ul>
+							{% endif %}
 
+							<h2>NoTSteaM</h2>
+							<h1>ALL GAMES</h1>
+
+						</article>
+						<article class="background-white">
+							<div class="art-header">
+								<hr class="line-2">
 <!-- Main -->
 {% for product in products %}
 	{% include 'includes/product_card.html' %}
 {% endfor %}
+								</div>
+						</article>
+                    </div>
+				</div>
+			</div>
+	   </section>
 {% endblock %}
 
 

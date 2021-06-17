@@ -59,7 +59,7 @@
 		<div id='cssmenu' class="align-center">
 			<ul>
 			   <li class="active"><a href='{% url "home" %}'><span>Home</span></a></li>
-			   <li class=' has-sub'><a href='about.html'><span>Cotegory</span></a>
+			   <li class=' has-sub'><a><span>Cotegory</span></a>
 				  <ul >
 					  {% for category in categorieschild %}
 					 <li ><a href="{% url 'category-detail' category.slug %}"><span>{{ category }}</span></a></li>
@@ -72,6 +72,19 @@
 			   <li><a href='menu.html'><span>Menu</span></a></li>
 			  <li><a href='event.html'><span>Events</span></a></li>
 			   <li class='last'><a href='contact.html'><span>Contacts</span></a></li>
+				{% if not request.user.is_authenticated %}
+				<li class='last'><a href='{% url "login" %}'><span>Log In</span></a></li>
+				{% else %}
+				<li class=' has-sub'><a href='about.html'><span>Profile</span></a>
+				  <ul >
+
+					<li ><a href="{% url 'profile' %}"><span>My Profile</span></a></li>
+					<li ><a href="{% url 'add-product' %}"><span>Add New Game</span></a></li>
+					<li ><a href="{% url 'list-product' %}"><span>My Products</span></a></li>
+					  <li ><a href="{% url 'logout' %}"><span>Logout</span></a></li>
+				{% endif %}
+				  </ul>
+			   </li>
 			</ul>
 		</div>
 	</header>

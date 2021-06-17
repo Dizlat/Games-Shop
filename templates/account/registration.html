@@ -1,9 +1,27 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-    <h1>Sing up</h1>
-<form method="post" enctype="multipart/form-data">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Sing up</button>
-</form>
-{% endblock content %}
+<section id="container">
+			<div class="wrap-container clearfix">
+				<div id="main-content">
+					<div class="wrap-content zerogrid ">
+						<article class="post">
+  							<h1>Sing in</h1>
+						</article>
+						<article class="background-white">
+							<div class="art-header">
+								<hr class="line-2">
+
+                                <form method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    {{ form.as_p }}
+                                    <button type="submit">Sing up</button>
+                                </form>
+                            </div>
+						</article>
+                    </div>
+				</div>
+			</div>
+	   </section>
+
+{% endblock  %}
