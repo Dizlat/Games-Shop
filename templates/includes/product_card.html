@@ -1,31 +1,27 @@
 
-<!--////////////////////////////////////Container-->
-		<section id="container">
-			<div class="wrap-container">
-				<!-----------------content-box-1-------------------->
-				<section class="content-box background-gray box-1 zerogrid">
-					<div class="row wrap-box"><!--Start Box-->
-						<div class="col-1-2">
-							<div class="wrap-col">
-								<div style="padding-top: 60px;">
-									<center><img src="{{ product.get_image }}"></center>
-								</div>
-							</div>
-						</div>
-						<div class="col-1-2">
-							<div class="wrap-col">
-								<div class="row">
-									<div class="t-center" style="padding-top: 30px;">
-										<div class="header">
-											<h2>{{ product.tittle }}</h2>
-										</div>
-										<strong>{{ product.description }}</strong><br/><br>
-										<span>Release date: {{ product.release_date }}</span><br/><br>
-										<a href="{% url 'product-detail' product.id %}" class="button" >More Details</a>
-										<a href="#" class="button" >Add to Cart</a>
+
+<!-- Post -->
+							<article class="post">
+								<header>
+									<div class="title"  style="width: ">
+										<h2><a href="single.html">Magna sed adipiscing</a></h2>
+										<p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p>
 									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</section>
+									<div class="meta">
+										<time class="published" datetime="2015-11-01">November 1, 2015</time>
+										<a href="{% url 'account-detail' post.id %}" class="author"><span class="name">Jane Doe</span><img src="{% static 'images/avatar.jpg' %}" alt="" /></a>
+									</div>
+								</header>
+								<a href="single.html" class="image featured"><img src="{% static 'images/pic01.jpg' %}" alt="" /></a>
+								<p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
+								<footer>
+									<ul class="actions">
+										<li><a href="{% static 'single.html' %}" class="button large">Continue Reading</a></li>
+									</ul>
+									<ul class="stats">
+										<li><a href="#">General</a></li>
+										<li><a href="#" class="icon solid fa-heart">28</a></li>
+										<li><a href="#" class="icon solid fa-comment">128</a></li>
+									</ul>
+								</footer>
+							</article>
