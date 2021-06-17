@@ -2,27 +2,41 @@
 {% load static %}
 {% block content %}
 
-<article class="post">
-                                <h1>{{ object_list.0.category.name }}</h1>
-</article>
 
 
-	    <!-- Main -->
-					<div id="main">
 
-						<!-- Post -->
-							<article class="post">
-                                    {% if category.get_children %}
-                                    {% for child in category.get_children %}
-                                <ul class="actions">
-											<li><a href="{% url 'category' child.slug %}" class="button big">{{ child.name }}</a></li>
-                                </ul>
-                                {% endfor %}
-                                {% endif %}
-                            </article>
-                        <article class="post">
+	   <section id="container">
+			<div class="wrap-container clearfix">
+				<div id="main-content">
+					<div class="wrap-content zerogrid ">
+						<article class="post">
+  							<h1>{{ category.name }}</h1>
+						</article>
+						<article class="background-white">
+							<div class="art-header">
+								<hr class="line-2">
+								{% for child in category.get_children  %}
+								<a class="button" href="{% url 'category-detail' child.slug %}">{{ child.name }}</a>
+								{% endfor %}
+							</div>
+						</article>
+						<article class="post">
+							<div class="art-header">
+								<hr class="line-2">
 
-                            </article>
-                    </div>
+								{% for product in products %}
+								{% include 'includes/product_card.html' %}
+								{% endfor %}
+							</div>
+
+						</article>
+					</div>
+				</div>
+			</div>
+	   </section>
+
+
+
+
 
 {% endblock %}

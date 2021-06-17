@@ -1,5 +1,6 @@
 from datetime import timedelta
 
+import django_filters
 from django.contrib.auth.decorators import login_required
 from django.forms import modelformset_factory
 from django.http import HttpResponse
@@ -10,6 +11,8 @@ from django.utils import timezone
 from django.views.generic import ListView, DetailView, DeleteView, CreateView
 
 # Create your views here.
+from django_filters import FilterSet
+
 from .forms import *
 from .models import *
 from .permissions import UserHasPermissionMixin
@@ -27,10 +30,29 @@ class ProductListView(ListView):
     context_object_name = 'products'
 
 
+# class PostsFilterSet(FilterSet):
+#     author = django_filters.CharFilter('author__email', lookup_expr='iexact')
+#     created_at = django_filters.DateFilter('created_at', lookup_expr='gt')
+#
+#     class Meta:
+#         model = Post
+#         fields = ['tags', 'author']
+
+
 class ProductDetailView(DetailView):
     model = Product
     template_name = 'product_detail.html'
     context_object_name = 'product'
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.id = kwargs.get('id', None)
+        return super().get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['images'] = Image.objects.filter(product_id=self.id)
+        return context
 
 
 class CategoryDetailView(DetailView):
@@ -45,7 +67,12 @@ class CategoryDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['products'] = Product.objects.filter(category_id=self.slug)
+        context['products'] = Product.objects.filter(categories=self.slug)
+        print()
+        print(context)
+        print()
+        print()
+        print()
         return context
 
 

@@ -1,32 +1,31 @@
 
-<!-- Main -->
-					<div id="main">
-
-						<!-- Post -->
-							<article class="post">
-								<header>
-									<div class="title">
-										<h2><a href="{% url 'product-detail' product.id %}">{{ product }}</a></h2>
-										 {% for tag in product.tags.all %}
-              							<a href="#">{{ tag.tittle }}</a>
-          								{% endfor %}
-										<p>{{ product.tags.tittle }}</p>
+<!--////////////////////////////////////Container-->
+		<section id="container">
+			<div class="wrap-container">
+				<!-----------------content-box-1-------------------->
+				<section class="content-box background-gray box-1 zerogrid">
+					<div class="row wrap-box"><!--Start Box-->
+						<div class="col-1-2">
+							<div class="wrap-col">
+								<div style="padding-top: 60px;">
+									<center><img src="{{ product.image.url }}"></center>
+								</div>
+							</div>
+						</div>
+						<div class="col-1-2">
+							<div class="wrap-col">
+								<div class="row">
+									<div class="t-center" style="padding-top: 30px;">
+										<div class="header">
+											<h2>{{ product.tittle }}</h2>
+										</div>
+										<strong>{{ product.description }}</strong><br/><br>
+										<span>Release date: {{ product.release_date }}</span><br/><br>
+										<a href="{% url 'product-detail' product.id %}" class="button" >More Details</a>
+										<a href="#" class="button" >Add to Cart</a>
 									</div>
-									<div class="meta">
-										<time class="published" datetime="2015-11-01">{{ product.company.title }}</time>
-										<img class="site-logo" style="width: 190px; height: 100px;" src="{{ product.company.logo.url }}" alt="" />
-									</div>
-								</header>
-								<span class="image featured"><img src="{{ product.image.url }}" alt="" /></span>
-								<p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
-								<p>Nunc quis dui scelerisque, scelerisque urna ut, dapibus orci. Sed vitae condimentum lectus, ut imperdiet quam. Maecenas in justo ut nulla aliquam sodales vel at ligula. Sed blandit diam odio, sed fringilla lectus molestie sit amet. Praesent eu tortor viverra lorem mattis pulvinar feugiat in turpis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce ullamcorper tellus sit amet mattis dignissim. Phasellus ut metus ligula. Curabitur nec leo turpis. Ut gravida purus quis erat pretium, sed pellentesque massa elementum. Fusce vestibulum porta augue, at mattis justo. Integer sed sapien fringilla, dapibus risus id, faucibus ante. Pellentesque mattis nunc sit amet tortor pellentesque, non placerat neque viverra. </p>
-								<footer>
-									<ul class="stats">
-										<li><a href="#">General</a></li>
-										<li><a href="#" class="icon solid fa-heart">28</a></li>
-										<li><a href="#" class="icon solid fa-comment">128</a></li>
-									</ul>
-								</footer>
-							</article>
-
+								</div>
+							</div>
+						</div>
 					</div>
+				</section>
