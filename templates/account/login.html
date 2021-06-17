@@ -1,31 +1,27 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<section id="container">
-			<div class="wrap-container clearfix">
-				<div id="main-content">
-					<div class="wrap-content zerogrid ">
-						<article class="post">
-  							<h1>Log In</h1>
-						</article>
-						<article class="background-white">
-							<div class="art-header">
-								<hr class="line-2">
-                            <form method="post">
-                                        {% csrf_token %}
-                                        {{ form.as_p }}
-                                     <button type="submit">Log in</button><br>
-							</form>
-								<h3>If you don't have a profile. You can Registration!</h3>
-                                    <a href="{% url 'register' %}"><button>Registration</button></a>
-
-
-
-							</div>
-						</article>
-                    </div>
-				</div>
-			</div>
-	   </section>
-
+    	<!-- Post -->
+							<article class="post">
+								<header>
+									<div class="title">
+										<h2><a href="single.html">LOG IN</a></h2>
+									</div>
+								</header>
+								<form method="post">
+  								{% csrf_token %}
+  								{{ form.as_p }}
+									<button type="submit">Log in</button>
+								</form>
+								<footer>
+									<ul class="actions">
+										<li><a href="{% url 'register' %}" class="button large">Registration</a></li>
+									</ul>
+									<ul class="stats">
+										<li><a href="#">General</a></li>
+										<li><a href="#" class="icon solid fa-heart">28</a></li>
+										<li><a href="#" class="icon solid fa-comment">128</a></li>
+									</ul>
+								</footer>
+							</article>
 {% endblock %}

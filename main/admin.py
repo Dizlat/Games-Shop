@@ -4,17 +4,5 @@ from main.models import *
 
 # Create your views here.
 
-
-class ImageInlineAdmin(admin.TabularInline):
-    model = Image
-    fields = ('image',)
-    max_num = 5
-
-
-@admin.register(Product)
-class ProductAdmin(admin.ModelAdmin):
-    inlines = [ImageInlineAdmin,]
-
-
-admin.site.register(Category)
-admin.site.register(Company)
+admin.site.register(Post)
+admin.site.register(Comment)
