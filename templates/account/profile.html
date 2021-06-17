@@ -1,16 +1,27 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-<section id="banner">
-  <div class="content">
-    <header>
-      <h1>{{ request.user.username }}</h1>
-<!--<p>A free and fully responsive site template</p>-->
-    </header>
+<section id="container">
+			<div class="wrap-container clearfix">
+				<div id="main-content">
+					<div class="wrap-content zerogrid ">
+						<article class="post">
+  							<h1>Profile</h1>
+						</article>
+						<article class="background-white">
+							<div class="art-header">
+								<hr class="line-2">
+                              <h1>{{ request.user.username }}</h1>
+
     <p>{{ request.user }}</p>
     <p>{{ request.user.date_joined }}</p>
   </div>
-  <span class="image object">
-    <img src="{{ request.user.image.url }}" style="width: 500px; height: 500px;" alt="" />
-  </span>
+  <div style="padding-top: 60px;">
+									<center><img src="{{ request.user.image.url }}"></center>
+  </div>
+						</article>
+					</div>
+				</div>
+			</div>
 </section>
 {% endblock %}

@@ -13,14 +13,14 @@
 						</article>
 
 						<article class="background-white">
-<!--							<div class="art-header">-->
-<!--								<hr class="line-2">-->
-								<h1>Screenshots</h1>
+							<div class="art-header">
+								<hr class="line-2">
+								<h1>Images</h1>
 								<hr class="major" />
 									{% for image in product.images.all %}
 									<img src="{{ image }}" style="width: 250px; height: 250px;" class="img-thumbnail" alt="...">
 									{% endfor %}
-<!--							</div>-->
+							</div>
 
 						</article>
 
@@ -32,43 +32,20 @@
 							</div>
 							<div class="art-content">
 								<strong>{{ product.description }}</strong>
-								<div class="row">
-									<div class="col-1-2">
-										<div class="wrap-col post">
+								<article class="background-white">
+									<div class="art-header">
+											<hr class="line-2">
 											<h3>SYSTEM REQUIREMENTS MINIMUM</h3>
-											<p>
-OS: Windows® 7 (32/64-bit)/Vista/XP
-Processor: 1.7 GHz Processor or better
-Memory: 512 MB RAM
-DirectX: Version 8.1
-Network: Broadband Internet connection
-Storage: 15 GB available space
-</p>
-
-										</div>
+											<p>{{ product.system_requiremenrs }}</p>
 									</div>
-									<div class="col-1-2">
-										<div class="wrap-col post">
-											<h3>SYSTEM REQUIREMENTS RECOMMENDED:</h3>
-											<p>
-OS: Windows® 7 (32/64-bit)
-Processor: Pentium 4 processor (3.0GHz, or better)
-Memory: 1 GB RAM
-DirectX: Version 9.0c
-Network: Broadband Internet connection
-Storage: 15 GB available space</p>
-
-										</div>
-									</div>
-								</div>
-							</div>
-						</article>
-						<article class="background-white">
+								</article>
+								<article class="background-white">
 							<div class="art-header">
 								<hr class="line-2">
-								<a class="button" href="#">See All</a>
-								<a class="button" href="#">See All</a>
-
+								<a class="button" href="{% url 'add-image' product.id %}">Add Images</a>
+								<a class="button" href="#">Update</a>
+							</div>
+						</article>
 							</div>
 						</article>
 					</div>

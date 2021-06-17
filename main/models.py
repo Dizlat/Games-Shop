@@ -4,17 +4,6 @@ from account.models import User
 # Create your models here.
 
 
-
-
-
-class Tag(models.Model):
-    slug = models.SlugField(primary_key=True, max_length=50)
-    title = models.CharField(max_length=150)
-
-    def __str__(self):
-        return self.title
-
-
 class Company(models.Model):
     title = models.CharField(max_length=100)
     logo = models.ImageField(upload_to='logos')
@@ -43,19 +32,21 @@ class Category(models.Model):
 
 class Product(models.Model):
     tittle = models.CharField(max_length=250)
-    image = models.ImageField(upload_to='images')
     description = models.TextField()
-    release_date = models.DateField()
+    system_requiremenrs = models.TextField(blank=True, null=True)
+    release_date = models.DateField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='products')
     company = models.ForeignKey(Company, models.DO_NOTHING, related_name='products')
 
-
     categories = models.ManyToManyField(Category, related_name='products')
-    tags = models.ManyToManyField(Tag)
 
     def __str__(self):
         return self.tittle
+
+    @property
+    def get_image(self):
+        return self.images.first()
 
     def get_absolute_url(self):
         from django.urls import reverse

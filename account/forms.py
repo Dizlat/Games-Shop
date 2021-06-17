@@ -9,6 +9,9 @@ class RegistrationForm(forms.ModelForm):
 
     class Meta:
         model = User
+        help_texts = {
+            'username': None,
+        }
         fields = ('username', 'email', 'password', 'password_confirmation',
                   'first_name', 'last_name', 'image')
 
@@ -33,5 +36,8 @@ class RegistrationForm(forms.ModelForm):
         return data
 
     def save(self, commit=True):
-        user = User.objects.create_user(**self.cleaned_data)
-        return user
+        try:
+            user = User.objects.create_user(**self.cleaned_data)
+            return user
+        except:
+            raise ValueError('name and email should not be similar')
