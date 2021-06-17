@@ -26,6 +26,12 @@ class MainView(ListView):
     paginate_by = 2
 
 
+class PostDetailView(DetailView):
+    model = Post
+    template_name = 'post_detail.html'
+    context_object_name = 'post'
+
+
 class AccountDetailView(DetailView):
     model = User
     template_name = 'account_detail.html'
@@ -43,11 +49,16 @@ class AddPost(CreateView):
         return kwargs
 
     def get_success_url(self):
-        return reverse('my-post', args=(self.object.id, ))
+        return reverse('post-detail', args=(self.object.id, ))
 
 
 class UpdatePostView(UserHasPerMixin, UpdateView):
+    model = Post
+    template_name = 'update_post.html'
+    form_class = UpdatePostForm
 
+    def get_success_url(self):
+        return reverse('post-detail', args=(self.object.id, ))
 
 
 class DeletePostView(UserHasPerMixin, DeleteView):
