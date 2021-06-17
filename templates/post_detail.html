@@ -1,10 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
 
 
 <!-- Post -->
 							<article class="post">
 								<header>
 									<div class="title"  style="width: ">
-										<h2><a href="{% url 'post-detail' post.id %}">{{ post.tittle }}</a></h2>
+										<h2><a href="single.html">{{ post.tittle }}</a></h2>
 										{% if request.user.is_authenticated %}
 										<p>{{ post.status }}</p>
 										{% endif %}
@@ -19,7 +22,7 @@
 									</div>
 								</header>
 								{% if not post.image %}
-								<a href="{% url 'post-detail' post.id %}" class="image featured"><img src="{% static 'images/pic01.jpg' %}" alt="" /></a>
+								<a href="single.html" class="image featured"><img src="{% static 'images/pic01.jpg' %}" alt="" /></a>
 								<p>{{ post.description }}</p>
 								<footer>
 									{% if request.user.is_authenticated %}
@@ -35,3 +38,4 @@
 									</ul>
 								</footer>
 							</article>
+{% endblock %}

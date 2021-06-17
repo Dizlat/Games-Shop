@@ -51,35 +51,37 @@
 								</form>
 							</section>
 						<!-- Links -->
+						{% if request.user.is_authenticated %}
 							<section>
 								<ul class="links">
-									{% if request.user.is_authenticated %}
+
 									<li>
 										<a href="{% url 'profile' %}">
 											<h3>My Profile</h3>
 										</a>
 									</li>
-									{% endif %}
+
 									<li>
-										<a href="#">
+										<a href="{% url 'add-post' %}">
 											<h1>Add Post</h1>
 										</a>
 									</li>
+
 									<li>
 										<a href="#">
-											<h1>Feugiat veroeros</h1>
-											<p>Phasellus sed ultricies mi congue</p>
+											<h1>Favorites</h1>
 										</a>
 									</li>
+
 									<li>
 										<a href="#">
-											<h1>Etiam sed consequat</h1>
-											<p>Porta lectus amet ultricies</p>
+											<h1>Сhat</h1>
 										</a>
 									</li>
+
 								</ul>
 							</section>
-
+{% endif %}
 						<!-- Actions -->
 							{% if not request.user.is_authenticated %}
 							<section>
@@ -87,13 +89,13 @@
 									<li><a href="{% url 'login' %}" class="button large fit">Log In</a></li>
 								</ul>
 								<ul class="actions stacked">
-									<li><a href="register" class="button large fit">Sing In</a></li>
+									<li><a href="{% url 'register' %}" class="button large fit">Sing In</a></li>
 								</ul>
 							</section>
 							{% else %}
 							<section>
 								<ul class="actions stacked">
-									<li><a href="logout" class="button large fit">Logout</a></li>
+									<li><a href="{% url 'logout' %}" class="button large fit">Logout</a></li>
 								</ul>
 							</section>
 							{% endif %}
