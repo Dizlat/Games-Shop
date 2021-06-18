@@ -1,12 +1,13 @@
-
-
-<!-- Post -->
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% for post in posts %}
+   <!-- Post -->
 							<article class="post">
 								<header>
 									<div class="title"  style="width: ">
 										<h2><a href="{% url 'post-detail' post.id %}">{{ post.tittle }}</a></h2>
 										{% if request.user.is_authenticated %}
-										<p>{{ post.status }}</p>
 										{% endif %}
 									</div>
 									<div class="meta">
@@ -18,14 +19,17 @@
 										{% endif %}
 									</div>
 								</header>
-								{% if not post.image %}
+								{% if post.image %}
+								<a href="{% url 'post-detail' post.id %}" class="image featured"><img src="{{ post.image.url }}" alt="" /></a>
+								{% else %}
 								<a href="{% url 'post-detail' post.id %}" class="image featured"><img src="{% static 'images/pic01.jpg' %}" alt="" /></a>
+								{% endif %}
 								<p>{{ post.description }}</p>
 								<footer>
 									{% if request.user.is_authenticated %}
 									<ul class="actions">
-										<li><a href="{% static 'add-post' post.id %}" class="button large">Update</a></li>
-										<li><a href="{% static 'delete' post.id %}" class="button large">Update</a></li>
+										<li><a href="{% url 'update-post' post.id %}" class="button large">Update</a></li>
+										<li><a href="{% url 'delete-post' post.id %}" class="button large">Delete</a></li>
 									</ul>
 									{% endif %}
 									<ul class="stats">
@@ -35,3 +39,18 @@
 									</ul>
 								</footer>
 							</article>
+{% endfor %}
+                             <ul class="actions pagination">
+								 {% if page_obj.has_previous %}
+								<li><a href="{% url 'home' %}?page={{ page_obj.previous_page_number }}" class="button large previous">Previous Page</a></li>
+								 {% endif %}
+								 {% if page_obj.has_next %}
+								<li><a href="{% url 'home' %}?page={{ page_obj.next_page_number }}" class="button large next">Next Page</a></li>
+								 {% endif %}
+							</ul>
+{% endblock %}
+
+
+
+
+

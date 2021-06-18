@@ -6,13 +6,6 @@
 							<article class="post">
 								<header>
 									<div class="title"  style="width: ">
-										{% if messages %}
-									<ul class="messages">
-										{% for message in messages %}
-										<div class="alert alert-success" role="alert">{{ message }}</div>
-										{% endfor %}
-									</ul>
-									{% endif %}
 										<h2><a href="{% url 'post-detail' post.id %}">{{ post.tittle }}</a></h2>
 										{% if request.user.is_authenticated %}
 										{% endif %}

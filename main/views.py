@@ -3,6 +3,7 @@ from datetime import timedelta
 import django_filters
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 from django.forms import modelformset_factory
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
@@ -63,7 +64,25 @@ class UpdatePostView(UserHasPerMixin, UpdateView):
 
 class DeletePostView(UserHasPerMixin, DeleteView):
     model = Post
-    template_name = 'delete-post.html'
+    template_name = 'post-delete.html'
+    success_url = reverse_lazy('home')
 
-    def get_success_url(self):
-        return reverse('home')
+
+class SearchResultView(View):
+    def get(self, request):
+
+        q = request.GET.get('query', '')
+        print()
+        print(request)
+        print()
+        print()
+        print()
+
+        if q:
+            posts = Post.objects.filter(
+                Q(tittle__icontains=q) |
+                Q(description__icontains=q)
+            )
+        else:
+            posts = Post.objects.none()
+        return render(request, 'main.html', {'posts': posts})
