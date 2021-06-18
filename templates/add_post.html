@@ -8,11 +8,11 @@
 										<h2><a href="single.html">Create Post</a></h2>
 									</div>
 								</header>
-								<form method="post">
+								<form method="post"  enctype="multipart/form-data">
   								{% csrf_token %}
   								{{ form.as_p }}
 									<button type="submit">Create</button>
-								</form>
+								</form
 								<footer>
 									<ul class="stats">
 										<li><a href="#">General</a></li>
