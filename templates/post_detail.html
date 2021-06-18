@@ -7,16 +7,16 @@
 							<article class="post">
 								<header>
 									<div class="title"  style="width: ">
-										<h2><a href="single.html">{{ post.tittle }}</a></h2>
+										<h2>{{ post.tittle }}</h2>
 										{% if request.user.is_authenticated %}
 										{% endif %}
 									</div>
 									<div class="meta">
 										<time class="published" datetime="2015-11-01">{{ post.created }}</time>
 										{% if post.user.image %}
-										<a href="{% url 'account-detail' post.id %}" class="author"><span class="name">{{ post.user }}</span><img src="{{ post.user.image.url }}" alt="" /></a>
+										<a href="{% url 'account-detail' post.user.id %}" class="author"><span class="name">{{ post.user }}</span><img src="{{ post.user.image.url }}" alt="" /></a>
 										{% else %}
-										<a href="{% url 'account-detail' post.id %}" class="author"><span class="name">{{ post.user }}</span><img src="{% static 'images/default-user-image.png' %}" alt="" /></a>
+										<a href="{% url 'account-detail' post.user.id %}" class="author"><span class="name">{{ post.user }}</span><img src="{% static 'images/default-user-image.png' %}" alt="" /></a>
 										{% endif %}
 									</div>
 								</header>
@@ -26,6 +26,44 @@
 								<a href="{% url 'post-detail' post.id %}" class="image featured"><img src="{{ post.image.url }}" alt="" /></a>
 								{% endif %}
 								<p>{{ post.description }}</p>
+								<header>
+									<div class="title"  style="width: ">
+										{% for comment in post.comment.all %}
+										{{ comment.comment }}
+										{% endfor %}
+
+
+											{% with comments.count as total_comments %}
+											  <h2>
+												{{ total_comments }} comment{{ total_comments|pluralize }}
+											  </h2>
+											{% endwith %}
+															{% for comment in comments %}
+											  <div class="comment">
+												<p class="info">
+												  Comment {{ forloop.counter }} by {{ comment.user }}
+												  {{ comment.created }}
+												</p>
+											  {{ comment.body|linebreaks }}
+											  </div>
+											{% empty %}
+											  <p>There are no comments yet.</p>
+											{% endfor %}
+										{% if new_comment %}
+										  <h2>Your comment has been added.</h2>
+										{% else %}
+										  <h2>Add a new comment</h2>
+										  <form action="." method="post">
+											{{ form.as_p }}
+											{% csrf_token %}
+											<p><input type="submit" value="Add comment"></p>
+										  </form>
+										{% endif %}
+
+
+
+									</div>
+								</header>
 								<footer>
 									{% if request.user.is_authenticated %}
 									<ul class="actions">
@@ -33,11 +71,7 @@
 										<li><a href="{% url 'delete-post' post.id %}" class="button large">delete</a></li>
 									</ul>
 									{% endif %}
-									<ul class="stats">
-										<li><a href="#">General</a></li>
-										<li><a href="#" class="icon solid fa-heart">28</a></li>
-										<li><a href="#" class="icon solid fa-comment">128</a></li>
-									</ul>
+
 								</footer>
 							</article>
 {% endblock %}

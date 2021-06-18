@@ -14,15 +14,13 @@
 									</ul>
 									{% endif %}
 										<h2><a href="{% url 'post-detail' post.id %}">{{ post.tittle }}</a></h2>
-										{% if request.user.is_authenticated %}
-										{% endif %}
 									</div>
 									<div class="meta">
 										<time class="published" datetime="2015-11-01">{{ post.created }}</time>
 										{% if post.user.image %}
-										<a href="{% url 'account-detail' post.id %}" class="author"><span class="name">{{ post.user }}</span><img src="{{ post.user.image.url }}" alt="" /></a>
+										<a href="{% url 'account-detail' post.user.id %}" class="author"><span class="name">{{ post.user }}</span><img src="{{ post.user.image.url }}" alt="" /></a>
 										{% else %}
-										<a href="{% url 'account-detail' post.id %}" class="author"><span class="name">{{ post.user }}</span><img src="{% static 'images/default-user-image.png' %}" alt="" /></a>
+										<a href="{% url 'account-detail' post.user.id %}" class="author"><span class="name">{{ post.user }}</span><img src="{% static 'images/default-user-image.png' %}" alt="" /></a>
 										{% endif %}
 									</div>
 								</header>
@@ -39,11 +37,7 @@
 										<li><a href="{% url 'delete-post' post.id %}" class="button large">Delete</a></li>
 									</ul>
 									{% endif %}
-									<ul class="stats">
-										<li><a href="#">General</a></li>
-										<li><a href="#" class="icon solid fa-heart">28</a></li>
-										<li><a href="#" class="icon solid fa-comment">128</a></li>
-									</ul>
+
 								</footer>
 							</article>
 {% endfor %}

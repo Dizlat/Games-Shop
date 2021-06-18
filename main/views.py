@@ -1,19 +1,8 @@
 from datetime import timedelta
-
-import django_filters
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
-from django.forms import modelformset_factory
-from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib import messages
 from django.urls import reverse_lazy, reverse
 from django.utils import timezone
 from django.views.generic import *
-
-# Create your views here.
-from django_filters import FilterSet
 
 from .forms import *
 from .models import *
@@ -25,6 +14,35 @@ class MainView(ListView):
     template_name = 'main.html'
     context_object_name = 'posts'
     paginate_by = 2
+
+
+class PostListView(ListView):
+    model = Post
+    template_name = 'search.html'
+
+    def get_template_names(self):
+        template_name = super(PostListView, self).get_template_names()
+        search = self.request.GET.get('q')
+        filter = self.request.GET.get('filter')
+        if search:
+            template_name = 'search.html'
+        elif filter:
+            template_name = 'new.html'
+        return template_name
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        search = self.request.GET.get('q')
+        filter = self.request.GET.get('filter')
+        if search:
+            context['posts'] = Post.objects.filter(Q(tittle__icontains=search) |
+                                                    Q(description__icontains=search))
+        elif filter:
+            start_date = timezone.now() - timedelta(days=1)
+            context['posts'] = Post.objects.filter(created__gte=start_date)
+        else:
+            context['posts'] = Post.objects.all()
+        return context
 
 
 class PostDetailView(DetailView):
@@ -68,21 +86,13 @@ class DeletePostView(UserHasPerMixin, DeleteView):
     success_url = reverse_lazy('home')
 
 
-class SearchResultView(View):
-    def get(self, request):
+class CommentPostView(UserHasPerMixin, CreateView):
+    model = Comment
+    template_name = 'post_detail.html'
+    form_class = CommentForm
+#
+#     def get_success_url(self):
+#         return reverse('post-detail', args=(self.object.id, ))
 
-        q = request.GET.get('query', '')
-        print()
-        print(request)
-        print()
-        print()
-        print()
 
-        if q:
-            posts = Post.objects.filter(
-                Q(tittle__icontains=q) |
-                Q(description__icontains=q)
-            )
-        else:
-            posts = Post.objects.none()
-        return render(request, 'main.html', {'posts': posts})
+

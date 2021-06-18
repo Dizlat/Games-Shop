@@ -24,15 +24,15 @@
 						<nav class="links">
 							<ul>
 								<li><a href="{% url 'home' %}">Main</a></li>
-								<li><a href="#">New</a></li>
+								<li><a href="{% url 'home' %}?filter=new">New</a></li>
 							</ul>
 						</nav>
 						<nav class="main">
 							<ul>
 								<li class="search">
 									<a class="fa-search" href="#search">Search</a>
-									<form id="search" method="get" action="{% url 'home' %}">
-										<input type="text" name="query" placeholder="Search" />
+									<form id="search" method="get" action="{% url 'search-results' %}">
+										<input type="text" name="q" placeholder="Search" />
 									</form>
 								</li>
 								<li class="menu">
@@ -47,8 +47,8 @@
 
 						<!-- Search -->
 							<section>
-								<form class="search" method="get" action="{% url 'home' %}">
-									<input type="text" name="query" placeholder="Search" />
+								<form class="search" method="get" action="{% url 'search-results' %}">
+									<input type="text" name="q" placeholder="Search" />
 								</form>
 							</section>
 						<!-- Links -->
@@ -58,7 +58,7 @@
 
 									<li>
 										<a href="{% url 'profile' %}">
-											<h3>My Profile</h3>
+											<h1>My Profile</h1>
 										</a>
 									</li>
 
